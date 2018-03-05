@@ -1,0 +1,16 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.regform {
+    display: flex;
+    flex-direction: column;
+}
+
+.regform input {
+    max-width: 200px;
+}
+
+.regform button {
+    max-width: 200px;
+}

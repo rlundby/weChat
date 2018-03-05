@@ -5,256 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WeChat</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-<div>
+    <div>
 
-
-
-    <main>
+        <!-- Container for the demo -->
         <div>
-
-            <!-- Container for the demo -->
             <div>
-                <div>
-                    <h2>Firebase Email &amp; Password Authentication</h2>
-                </div>
-                <div class=>
-                    <p>Enter an email and password below and either sign in to an existing account or sign up</p>
-                    <input type="text" id="fname" name="fname" placeholder="First name"/>
+                <h2>Create account and Log in</h2>
+            </div>
+            <div class="regform">
+                <p>Enter an email and password below and either sign in to an existing account or sign up</p>
 
-                    <input type="text" id="lname" name="lname" placeholder="Last name"/>
+                <!-- This form is currently used both to register and log in -->
+                <input type="text" id="fname" name="fname" placeholder="First name"/>
 
-                    <input type="text" id="username" name="username" placeholder="Username"/>
+                <input type="text" id="lname" name="lname" placeholder="Last name"/>
 
-                    <input  type="text" id="email" name="email" placeholder="Email"/>
+                <input type="text" id="username" name="username" placeholder="Username"/>
 
-                    <input type="password" id="password" name="password" placeholder="Password"/>
+                <input  type="text" id="email" name="email" placeholder="Email"/>
 
-                    <button id="quickstart-sign-in" name="signin">Sign In</button>
+                <input type="password" id="password" name="password" placeholder="Password"/>
 
-                    <button id="quickstart-sign-up" name="signup">Sign Up</button>
+                <button id="quickstart-sign-in" name="signin">Sign In</button>
 
-                    <button disabled id="quickstart-verify-email" name="verify-email" style="display: none;">Send Email Verification</button>
+                <button id="quickstart-sign-up" name="signup">Sign Up</button>
 
-                    <button id="quickstart-password-reset" name="verify-email" style="display: none;" >Send Password Reset Email</button>
+                <button disabled id="quickstart-verify-email" name="verify-email" style="display: none;">Send Email Verification</button>
 
-                    <!-- Container where we'll display the user details -->
-                    <div class="quickstart-user-details-container">
-                        Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
-                        <div>Firebase auth <code>currentUser</code> object value:</div>
-                        <pre><code id="quickstart-account-details">null</code></pre>
-                    </div>
+                <button id="quickstart-password-reset" name="verify-email" style="display: none;" >Send Password Reset Email</button>
+
+                <!-- Container where we'll display the user details - usefull for checking info -->
+                <div class="quickstart-user-details-container">
+                    Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+                    <div>Firebase auth <code>currentUser</code> object value:</div>
+                    <pre><code id="quickstart-account-details">null</code></pre>
                 </div>
             </div>
-
         </div>
-    </main>
-</div>
-
-
-
-
+    </div>
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
 <script src="../js/jquery-3.2.1.min.js"></script>
-
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDRKZSF6TxNx5d4pFOa_DExL2TgA4UOnu4",
-            authDomain: "we-chat-43a4a.firebaseapp.com",
-            databaseURL: "https://we-chat-43a4a.firebaseio.com",
-            projectId: "we-chat-43a4a",
-            storageBucket: "we-chat-43a4a.appspot.com",
-            messagingSenderId: "357283703015"
-        };
-        firebase.initializeApp(config);
-
-        // Vars for Firebase
-        var db = firebase.database();
-        var auth = firebase.auth();
-        var provider = new firebase.auth.GithubAuthProvider();
-        var userId;
-
-
-        function toggleSignIn() {
-            if (firebase.auth().currentUser) {
-                // [START signout]
-                firebase.auth().signOut();
-                // [END signout]
-            } else {
-                var email = document.getElementById('email').value;
-                var password = document.getElementById('password').value;
-                if (email.length < 4) {
-                    alert('Please enter an email address.');
-                    return;
-                }
-                if (password.length < 4) {
-                    alert('Please enter a password.');
-                    return;
-                }
-                // Sign in with email and pass.
-                // [START authwithemail]
-                firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    // [START_EXCLUDE]
-                    if (errorCode === 'auth/wrong-password') {
-                        alert('Wrong password.');
-                    } else {
-                        alert(errorMessage);
-                    }
-                    console.log(error);
-                    document.getElementById('quickstart-sign-in').disabled = false;
-                    // [END_EXCLUDE]
-                });
-                // [END authwithemail]
-            }
-            document.getElementById('quickstart-sign-in').disabled = true;
-        }
-        /**
-         * Handles the sign up button press.
-         */
-        function handleSignUp() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var username = document.getElementById('username').value;
-            var fName = document.getElementById('fname').value;
-            var lName = document.getElementById('lname').value;
-            if (email.length < 4) {
-                alert('Please enter an email address.');
-                return;
-            }
-            if (password.length < 4) {
-                alert('Please enter a password.');
-                return;
-            }
-            // Sign in with email and pass.
-            // [START createwithemail]
-            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // [START_EXCLUDE]
-                if (errorCode == 'auth/weak-password') {
-                    alert('The password is too weak.');
-                } else {
-                    alert(errorMessage);
-                }
-                console.log(error);
-                // [END_EXCLUDE]
-            });
-
-            firebase.auth().onAuthStateChanged( user => {
-                if (user) {
-                    // If user state changes and 'user' exists, check Firebase Database for user
-                    const userReference = db.ref(`/users/${user.uid}`);
-                    userReference.once('value', snapshot => {
-                        if (!snapshot.val()) {
-                            // User does not exist, create user entry
-                            userReference.set({
-                                email: user.email,
-                                username: username,
-                                firstname: fName,
-                                lastname: lName
-                            });
-                        }
-                    });
-                }
-            });
-            // [END createwithemail]
-        }
-        /**
-         * Sends an email verification to the user.
-         */
-        function sendEmailVerification() {
-            // [START sendemailverification]
-            firebase.auth().currentUser.sendEmailVerification().then(function() {
-                // Email Verification sent!
-                // [START_EXCLUDE]
-                alert('Email Verification Sent!');
-                // [END_EXCLUDE]
-            });
-            // [END sendemailverification]
-        }
-        function sendPasswordReset() {
-            var email = document.getElementById('email').value;
-            // [START sendpasswordemail]
-            firebase.auth().sendPasswordResetEmail(email).then(function() {
-                // Password Reset Email Sent!
-                // [START_EXCLUDE]
-                alert('Password Reset Email Sent!');
-                // [END_EXCLUDE]
-            }).catch(function(error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // [START_EXCLUDE]
-                if (errorCode == 'auth/invalid-email') {
-                    alert(errorMessage);
-                } else if (errorCode == 'auth/user-not-found') {
-                    alert(errorMessage);
-                }
-                console.log(error);
-                // [END_EXCLUDE]
-            });
-            // [END sendpasswordemail];
-        }
-        /**
-         * initApp handles setting up UI event listeners and registering Firebase auth listeners:
-         *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
-         *    out, and that is where we update the UI.
-         */
-        function initApp() {
-            // Listening for auth state changes.
-            // [START authstatelistener]
-            firebase.auth().onAuthStateChanged(function(user) {
-                // [START_EXCLUDE silent]
-                document.getElementById('quickstart-verify-email').disabled = true;
-                // [END_EXCLUDE]
-                if (user) {
-
-                    // User is signed in.
-                    var displayName = user.displayName;
-                    var email = user.email;
-                    var emailVerified = user.emailVerified;
-                    var photoURL = user.photoURL;
-                    var isAnonymous = user.isAnonymous;
-                    var uid = user.uid;
-                    var providerData = user.providerData;
-                    // [START_EXCLUDE]
-                    document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-                    document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-                    document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-                    if (!emailVerified) {
-                        document.getElementById('quickstart-verify-email').disabled = false;
-                    }
-                    // [END_EXCLUDE]
-                } else {
-                    // User is signed out.
-                    // [START_EXCLUDE]
-                    document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-                    document.getElementById('quickstart-sign-in').textContent = 'Sign in';
-                    document.getElementById('quickstart-account-details').textContent = 'null';
-                    // [END_EXCLUDE]
-                }
-                // [START_EXCLUDE silent]
-                document.getElementById('quickstart-sign-in').disabled = false;
-                // [END_EXCLUDE]
-            });
-            // [END authstatelistener]
-            document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
-            document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);
-            document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
-            document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
-        }
-        window.onload = function() {
-            initApp();
-        };
-
-    </script>
+<script src="../js/index.js"></script>
 </body>
 </html>
