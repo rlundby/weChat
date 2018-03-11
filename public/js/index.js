@@ -54,9 +54,9 @@ function toggleSignIn() {
     }
     document.getElementById('sign-in').disabled = true;
 }
-
-// Allows user to create an account
-
+/**
+ * Handles the sign up button press.
+ */
 function handleSignUp() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
@@ -103,7 +103,6 @@ function handleSignUp() {
     });
 }
 
-// Initialize the app
 function initApp() {
 
     document.getElementById('sign-in').addEventListener('click', toggleSignIn, false);
@@ -113,7 +112,6 @@ function initApp() {
     });
 }
 
-//  Catch username and edit site
 firebase.auth().onAuthStateChanged( user => {
     if (user) {
         let username;
