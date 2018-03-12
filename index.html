@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WeChat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <!-- Styling -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Archivo" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="css/chat.css" rel="stylesheet">
+
+    <!-- Load Firebase library -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+</head>
+<body>
+
+    <div id="sidebar">
+        <div id="logoSidebar"><h3>WE - CHAT</h3><img src="svgicons/speak.svg"></div>
+        <div id="groups"><h4>GROUP CHATS - 9</h4><ul id="groupsUL"></ul></div>
+        <div id="onlinePeople"><h4>ONLINE PEOPLE - 7</h4><ul><li>Simon Dyhr</li><li>Bengt Åkesson</li><li>Felicia Jönsson</li><li>Ove Ovesson</li><li>Kalle Beng</li><li>Mange Magnusson</li><li>Albert Troi</li></ul></div>
+    </div>
+
+    <div id="mainContent">
+        <div id="header">
+            <div id="headerGroupName">
+                <img src="https://loading.io/spinners/bricks/lg.block-rotate-loading-gif.gif">
+                <h4>Loading...</h4>
+            </div>
+            <div id="headerUser">
+                <span id="headerUserName"></span>
+                <i class="far fa-user" style="font-size: 18px"></i>
+            </div>
+            <div id="headerUserSettings" class="headerUserSettingsHide">
+                <div id="headerUserLogout"><i title='logout' class="fas fa-sign-out-alt"></i></div>
+                <div id="headerUserBack"><i class="ion ion-close-round"></i></div>
+            </div>
+        </div>
+        <div id="messageBox">
+            <div id="messages"></div>
+        </div>
+        <div id="sendMessage">
+            <form onsubmit="return false" id="sendMessageForm"> <!-- return false, so form wont refresh page on submitting. using a form for 'Enter' key to work -->
+                <input id="sendMessageInput" type="text" placeholder="Type your message here ..." autocomplete="off">
+                <button type="submit" id="sendMessageButton" onclick="pushMessage()">Send</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Custom scripts -->
+    <script src="JS/initialHandler.js"></script>
+    <script src="JS/groupHandler.js"></script>
+    <script src="JS/messageHandler.js"></script>
+    <script src="JS/chatHandler.js"></script>
+    <script src="JS/finalHandler.js"></script>
+    <script src="JS/index.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!--
+{
+  "rules": {
+    ".read": "auth !== null",
+    ".write": "auth !== null"
+  }
+}
+
+
+{
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+
+
+
+groups
+    --- 0001
+        --- messages
+        |   --- UniktID
+        |       .. photoURL
+        |       .. text
+        |       .. uid
+        --- settings
+            .. groupID
+            .. name
+-->
