@@ -3,7 +3,7 @@ body{
     font-family: 'Archivo', sans-serif;
 }
 
-.main-layout {
+.start-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;

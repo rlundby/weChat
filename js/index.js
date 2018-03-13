@@ -1,28 +1,14 @@
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyDRKZSF6TxNx5d4pFOa_DExL2TgA4UOnu4",
-    authDomain: "we-chat-43a4a.firebaseapp.com",
-    databaseURL: "https://we-chat-43a4a.firebaseio.com",
-    projectId: "we-chat-43a4a",
-    storageBucket: "we-chat-43a4a.appspot.com",
-    messagingSenderId: "357283703015"
-};
-firebase.initializeApp(config);
+let userName;
+let userID;
 
-// Vars for Firebase
-const db = firebase.database();
-const auth = firebase.auth();
-let userId;
-
-
+// Hides the chat by default
+$('#chatApp').hide();
 
 // This is used to log in and verify details
 function toggleSignIn() {
     $('#loginError').text("");
     if (firebase.auth().currentUser) {
-
         firebase.auth().signOut();
-
     } else {
         let email = document.getElementById('sign-in-email').value;
         let password = document.getElementById('sign-in-password').value;
@@ -99,28 +85,39 @@ function handleSignUp() {
 firebase.auth().onAuthStateChanged( user => {
     if (user) {
         // Clear errors
+        userID = user.uid;
         $('#regerror').text("");
         $('#loginError').text("");
         // Then
-        let showName;
         const userReference = db.ref(`/users/${user.uid}`);
         userReference.once("value")
             .then(function(snapshot) {
-                 showName = snapshot.child("name").val();
-                $("#signinpls").text("You are signed in, " + showName);
-                $("#sign-out").show();
+                 userName = snapshot.child("name").val();
+                $("#startHeader").hide();
+                $("#signinpls").text("Welcome to WeChat!")
+                $(".start-screen").animate({
+                    opacity: 0,
+                }, 1000, "linear", function() {
+                    $(".start-screen").hide();
+                });
+                //load username into header
+        document.getElementById("headerUserName").innerHTML = userName;
             });
 
-        $(".reg-main").hide();
+        $('#chatApp').show();
+
     }
      else {
+        $('#chatApp').hide();
+        $(".start-screen").show().css("opacity", "1");
         $(".reg-main").show();
-        $("#signinpls").text("Welcome! Please sign in or create an account.");
+        $("#signinpls").show().text("Welcome! Please sign in or create an account.");
         $("#sign-out").hide();
+
     }
 });
 
 document.getElementById('sign-in').addEventListener('click', toggleSignIn, false);
 document.getElementById('sign-up').addEventListener('click', handleSignUp, false);
-document.getElementById('sign-out').addEventListener('click', function(e) {
-    firebase.auth().signOut(); });
+//document.getElementById('sign-out').addEventListener('click', function(e) {
+  //  firebase.auth().signOut(); });
