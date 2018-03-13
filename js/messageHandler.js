@@ -25,7 +25,8 @@ function pushMessage() {
             userName: userName,
             text: msgText,
             timeStamp: newDate.hour + ":" + newDate.minute,
-            fullTimeStamp: newDate.year + "-" + newDate.month + "-" + newDate.day + " " + newDate.hour + ":" + newDate.minute
+            fullTimeStamp: newDate.year + "-" + newDate.month + "-" + newDate.day + " " + newDate.hour + ":" + newDate.minute,
+            forGroup: chosenGroup
         });
     }
 }

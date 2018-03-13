@@ -12,10 +12,12 @@ function loadChat() {
         childData = snapshot.val();
 
         /* Checks if you are the user so we can style it specificly later on */
-        if (childData.uid === userID){
-            ui.messages.innerHTML += "<div class='message userMessage'><span>" + childData.userName + " - " + childData.fullTimeStamp + "</span><p>" + childData.text + "</p></div>";
-        } else{
-            ui.messages.innerHTML += "<div class='message'><span>" + childData.userName + " - " + childData.fullTimeStamp + "</span><p>" + childData.text + "</p></div>";
+        if (childData.forGroup === chosenGroup) {
+            if (childData.uid === userID){
+                ui.messages.innerHTML += "<div class='message userMessage'><span>" + childData.userName + " - " + childData.fullTimeStamp + "</span><p>" + childData.text + "</p></div>";
+            } else{
+                ui.messages.innerHTML += "<div class='message'><span>" + childData.userName + " - " + childData.fullTimeStamp + "</span><p>" + childData.text + "</p></div>";
+            }
         }
 
         ui.messagebox.scrollTop = ui.messagebox.scrollHeight; //Scroll to bottom
