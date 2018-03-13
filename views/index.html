@@ -13,7 +13,6 @@
         <h1>WeChat</h1>
         <h1 id="signinpls">Welcome! Please sign in or create an account.</h1>
         <button id="sign-out" name="signout">Sign Out</button>
-
         <div class="reg-main">
             <div class="regform">
                 <h2>Create an account</h2>
@@ -35,8 +34,11 @@
                 <input type="password" id="sign-in-password" name="password" placeholder="Password"/>
 
                 <button id="sign-in" name="signin">Sign In</button>
+
             </div>
         </div>
+        <span id="loginError"></span>
+        <span id="regerror"></span>
     </div>
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>

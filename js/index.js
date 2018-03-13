@@ -10,76 +10,68 @@ var config = {
 firebase.initializeApp(config);
 
 // Vars for Firebase
-var db = firebase.database();
-var auth = firebase.auth();
-var provider = new firebase.auth.GithubAuthProvider();
-var userId;
+const db = firebase.database();
+const auth = firebase.auth();
+let userId;
 
 
 
 // This is used to log in and verify details
 function toggleSignIn() {
+    $('#loginError').text("");
     if (firebase.auth().currentUser) {
 
         firebase.auth().signOut();
 
     } else {
-        var email = document.getElementById('sign-in-email').value;
-        var password = document.getElementById('sign-in-password').value;
+        let email = document.getElementById('sign-in-email').value;
+        let password = document.getElementById('sign-in-password').value;
         if (email.length < 4) {
-            alert('Please enter an email address.');
+            $('#loginError').text('Please enter an valid email address.');
             return;
         }
         if (password.length < 4) {
-            alert('Please enter a password.');
+            $('#loginError').text('Please enter an valid password.');
             return;
         }
         // Sign in with email and pass.
-        // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            let errorCode = error.code;
+            let errorMessage = error.message;
             // [START_EXCLUDE]
             if (errorCode === 'auth/wrong-password') {
-                alert('Wrong password.');
+                $('#loginError').text('Wrong password.');
             } else {
-                alert(errorMessage);
+                console.log(errorMessage);
             }
             console.log(error);
-            document.getElementById('sign-in').disabled = false;
-            // [END_EXCLUDE]
         });
-        // [END authwithemail]
     }
-    document.getElementById('sign-in').disabled = true;
 }
 
 // Allows user to create an account
 
 function handleSignUp() {
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    var username = document.getElementById('username').value;
-    var name = document.getElementById('name').value;
-    if (email.length < 4) {
-        alert('Please enter an email address.');
-        return;
-    }
-    if (password.length < 4) {
-        alert('Please enter a password.');
+    $('#regerror').text("");
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+    let username = document.getElementById('username').value;
+    let name = document.getElementById('name').value;
+    if (password.length < 6) {
+        $('#regerror').text('Please enter a valid password.');
         return;
     }
 
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        let errorCode = error.code;
+        let errorMessage = error.message;
         // [START_EXCLUDE]
         if (errorCode == 'auth/weak-password') {
-            alert('The password is too weak.');
+            $('#regerror').text('The password is too weak.');
         } else {
-            alert(errorMessage);
+            console.log(errorMessage);
         }
         console.log(error);
         // [END_EXCLUDE]
@@ -103,27 +95,21 @@ function handleSignUp() {
     });
 }
 
-// Initialize the app
-function initApp() {
-
-    document.getElementById('sign-in').addEventListener('click', toggleSignIn, false);
-    document.getElementById('sign-up').addEventListener('click', handleSignUp, false);
-    document.getElementById('sign-out').addEventListener('click', function(e) {
-        firebase.auth().signOut();
-    });
-}
-
 //  Catch username and edit site
 firebase.auth().onAuthStateChanged( user => {
     if (user) {
-        let username;
+        // Clear errors
+        $('#regerror').text("");
+        $('#loginError').text("");
+        // Then
+        let showName;
         const userReference = db.ref(`/users/${user.uid}`);
         userReference.once("value")
             .then(function(snapshot) {
-                 username = snapshot.child("name").val();
-                $("#signinpls").text("You are signed in");
+                 showName = snapshot.child("name").val();
+                $("#signinpls").text("You are signed in, " + showName);
                 $("#sign-out").show();
-            })
+            });
 
         $(".reg-main").hide();
     }
@@ -134,6 +120,7 @@ firebase.auth().onAuthStateChanged( user => {
     }
 });
 
-window.onload = function() {
-    initApp();
-};
+document.getElementById('sign-in').addEventListener('click', toggleSignIn, false);
+document.getElementById('sign-up').addEventListener('click', handleSignUp, false);
+document.getElementById('sign-out').addEventListener('click', function(e) {
+    firebase.auth().signOut(); });
