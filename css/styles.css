@@ -12,7 +12,7 @@ body{
 }
 .reg-main {
     display: flex;
-    background-color: rgba(12, 15, 42, 0.87);
+    background-color: #434753;
     justify-content: center;
     min-width: 800px;
     min-height: 400px;
