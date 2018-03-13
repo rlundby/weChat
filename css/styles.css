@@ -1,0 +1,81 @@
+body{
+    background-color: #f0f0f0;
+    font-family: 'Archivo', sans-serif;
+}
+
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.reg-main {
+    display: flex;
+    background-color: #434753;
+    justify-content: center;
+    min-width: 800px;
+    min-height: 400px;
+}
+
+.regform {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid white;
+    padding-right: 50px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.reg-main h2{
+    font-size: 25px;
+    color: white;
+}
+
+.reg-main input {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid #cdcdcd;
+    background-color: #fcfcfc;
+    box-shadow: inset 4px 6px 10px -4px rgba(0, 0, 0, 0.3), 0 1px 1px -1px rgba(255, 255, 255, 0.3);
+}
+
+.login button {
+    border-radius: 5px;
+    width: 160px;
+    height: 30px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 14px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#28D2DE), to(#1A878F));
+}
+
+.regform button {
+    border-radius: 5px;
+    width: 160px;
+    height: 30px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#28D2DE), to(#1A878F));
+}
+
+#loginError, #regerror {
+    color: red;
+}

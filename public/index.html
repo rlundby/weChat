@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WeChat</title>
+
+    <!-- Styling -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Archivo" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/chat.css" >
+
+    <!-- Load Firebase library -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-database.js"></script>
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+<body>
+    <div class="start-screen">
+        <h1 id="startHeader">WeChat</h1>
+        <h1 id="signinpls">Welcome! Please sign in or create an account.</h1>
+       <!-- <button id="sign-out" name="signout">Sign Out</button> -->
+        <div class="reg-main">
+            <div class="regform">
+                <h2>Create an account</h2>
+                    <input type="text" id="name" name="name" placeholder="Full name" autocomplete="off" required>
+                    <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
+                    <input  type="text" id="email" name="email" placeholder="Email" autocomplete="off" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <button id="sign-up" name="signup">Create your account</button>
+            </div>
+            <div class="login">
+                <h2>Log in</h2>
+                <input  type="text" id="sign-in-email" name="email" placeholder="Email"/>
+                <input type="password" id="sign-in-password" name="password" placeholder="Password"/>
+                <button id="sign-in" name="signin">Sign In</button>
+            </div>
+        </div>
+        <span id="loginError"></span>
+        <span id="regerror"></span>
+    </div>
+
+
+    <!-- Start of Chat Application -->
+<div id="chatApp">
+    <div id="sidebar">
+        <div id="logoSidebar"><h3>WE - CHAT</h3><img src="../svgicons/speak.svg"></div>
+        <div id="groups"><h4>GROUP CHATS - 9</h4><ul id="groupsUL"></ul></div>
+        <div id="onlinePeople"><h4>ONLINE PEOPLE - 7</h4><ul><li>Simon Dyhr</li><li>Bengt Åkesson</li><li>Felicia Jönsson</li><li>Ove Ovesson</li><li>Kalle Beng</li><li>Mange Magnusson</li><li>Albert Troi</li></ul></div>
+    </div>
+
+    <div id="mainContent">
+        <div id="header">
+            <div id="headerGroupName">
+                <img src="https://loading.io/spinners/bricks/lg.block-rotate-loading-gif.gif">
+                <h4>Loading...</h4>
+            </div>
+            <div id="headerUser">
+                <span id="headerUserName"></span>
+                <i class="far fa-user" style="font-size: 18px"></i>
+            </div>
+            <div id="headerUserSettings" class="headerUserSettingsHide">
+                <div id="headerUserLogout" onclick="firebase.auth().signOut()"><i title='logout' class="fas fa-sign-out-alt"></i></div>
+                <div id="headerUserBack"><i class="ion ion-close-round"></i></div>
+            </div>
+        </div>
+        <div id="messageBox">
+            <div id="messages"></div>
+        </div>
+        <div id="sendMessage">
+            <form onsubmit="return false" id="sendMessageForm"> <!-- return false, so form wont refresh page on submitting. using a form for 'Enter' key to work -->
+                <input id="sendMessageInput" type="text" placeholder="Type your message here ..." autocomplete="off">
+                <button type="submit" id="sendMessageButton" onclick="pushMessage()">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../js/firebaseHandler.js"></script>
+<script src="../js/index.js"></script>
+<script src="../js/initialHandler.js"></script>
+<script src="../js/groupHandler.js"></script>
+<script src="../js/messageHandler.js"></script>
+<script src="../js/chatHandler.js"></script>
+<script src="../js/finalHandler.js"></script>
+</body>
+</html>

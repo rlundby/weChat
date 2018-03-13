@@ -1,0 +1,448 @@
+* {
+    font-family: 'Archivo', sans-serif;
+}
+
+
+
+
+
+#sidebar {
+    position: absolute;
+    height: 100vh;
+    width: 256px;
+    left: -256px;
+    background: #434753;
+    transition-duration: 0.3s;
+}
+
+#mainContent {
+    position: absolute;
+    height: 100vh;
+    width: calc(100% - 0px);
+    left: 0;
+    background: #f0f0f0;
+    transition-duration: 0.3s;
+}
+
+#headerGroupClose {
+    display: none;
+}
+
+.menuMobileShow {
+    left: 0 !important;
+    transition-duration: 0.3s;
+}
+
+.mainContentHide {
+    left: 256px !important;
+    width: calc(100% - 256px) !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .ipadHide {
+        display: none !important;
+    }
+
+    .ipadShow {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .mobileHide {
+        display: none !important;
+    }
+
+    .mobileShow {
+        display: block !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+#header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: white;
+    border-bottom: 1px solid #cdcdcd;
+    height: 60px;
+}
+
+#header > #headerGroupName > img{
+    position: absolute;
+    height: 40px;
+    float: left;
+    top: 10px;
+    left: 15px;
+}
+
+#header > #headerGroupName > h4, h5 {
+    position: absolute;
+    float: left;
+    left: 58px;
+    top: 22px;
+    padding-left: 0 !important;
+    font-size: 15px;
+    margin: auto;
+    color: #5f5f5f;
+    font-weight: lighter;
+    transition-duration: 0.3s;
+}
+
+#header > #headerGroupName > i {
+    position: absolute;
+    float: left;
+    padding: 15px 0 15px 20px;
+    font-size: 30px;
+    color: #828282;
+    transition-duration: 0.3s;
+}
+
+#header > #headerGroupName > i:hover {
+    color: black;
+    cursor: pointer;
+}
+
+#header > #headerUser {
+    position: absolute;
+    font-size: 20px;
+    color: #7d7d7d;
+    right: 0;
+    top:0;
+    padding: 17px;
+    transition-duration: 0.3s;
+}
+
+#header > #headerUser:hover {
+    color: black;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+#header > #headerUser span {
+    font-size: 15px;
+    padding-right: 5px;
+}
+
+.headerUserHide {
+    top: -100px !important;
+    transition-duration: 0.3s;
+}
+
+#header > #headerUserSettings div{
+    position: absolute;
+    font-size: 23px;
+    color: #9c9c9c;
+    right: 5px;
+    top:0;
+    padding: 18px;
+    transition-duration: 0.3s;
+}
+
+#header > #headerUserSettings div:first-child{
+    padding-right: 55px;
+}
+
+#headerUserBack:hover {
+    color: black !important;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+#headerUserLogout:hover {
+    color: black !important;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.headerUserSettingsHide div{
+    top: -100px !important;
+    transition-duration: 0.3s;
+}
+
+
+
+
+
+
+
+
+#sendMessage {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    height: 77px;
+    border-top: 1px solid #cdcdcd;
+}
+
+#sendMessage > form > #sendMessageInput {
+    width: calc(100% - 150px);
+    height: 45px;
+    padding-left: 20px;
+    margin: 15px;
+
+    outline: none;
+    border: none;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #F4F4F4;
+    color: #535353;
+}
+
+#sendMessage > form > #sendMessageInput::placeholder {
+    color: #9F9F9F;
+}
+
+#sendMessage > form > #sendMessageButton {
+    position: absolute;
+    width: 87px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 15px;
+
+    background: none;
+    border: none;
+    outline: none;
+    color: #898989;
+}
+
+#sendMessage > form > #sendMessageButton:hover {
+    color: #93C2ED;
+    cursor: pointer;
+}
+
+
+
+
+
+
+#groups > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: calc(100vh - 320px);
+    overflow: auto;
+}
+
+#groups > ul > li {
+    transition-duration: 0.3s;
+    padding: 9px 0 9px 15px;
+    color: #CECECE;
+}
+
+#groups > ul > li:before {
+    content: '#';
+    padding-right: 10px;
+}
+
+#groups > ul > li:first-child {
+    padding: 5px 0 9px 15px;
+}
+
+#groups > ul > li:hover {
+    transition-duration: 0.3s;
+    padding-left: 20px;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+#groups > h4 {
+    padding-left: 15px;
+    padding-top: 20px;
+    padding-bottom: 0;
+    line-height: 0;
+    color: #A5A5A5;
+}
+
+.activeChat {
+    background: #5a5e69;
+    padding: 15px 0 15px 15px !important;
+    color: white !important;
+    transition-duration: 0.3s;
+}
+
+
+
+
+
+#onlinePeople {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#onlinePeople > ul {
+    list-style-type: none;
+    margin: 0 0 15px 0;
+    padding: 0;
+    width: 100%;
+    height: 140px;
+    overflow: auto;
+}
+
+#onlinePeople > ul > li {
+    transition-duration: 0.3s;
+    padding: 12px 0 0 15px;
+    color: #CECECE;
+}
+
+#onlinePeople > ul > li:before {
+    display: inline-block;
+    content: '';
+    height: 10px;
+    width: 10px;
+    border-radius: 100px;
+    background: #85BB70;
+    margin-right: 10px;
+}
+
+#onlinePeople > ul > li:first-child {
+    padding: 0 0 0 15px;
+}
+
+#onlinePeople > ul > li:hover {
+    transition-duration: 0.3s;
+    color: #FFFFFF;
+}
+
+#onlinePeople > h4 {
+    padding-left: 15px;
+    padding-top: 20px;
+    padding-bottom: 0;
+    line-height: 0;
+    color: #A5A5A5;
+}
+
+
+
+
+
+
+#logoSidebar {
+    padding: 20px 50px 0 50px;
+}
+
+#logoSidebar > h3 {
+    float: left;
+    text-align: center;
+    font-size: 22px;
+    line-height: 0;
+    color: #fff;
+}
+
+#logoSidebar > img {
+    padding-left: 12px;
+    padding-top: 5px;
+    height: 28px;
+}
+
+
+
+
+
+
+#messageBox {
+    position: absolute;
+    margin-top: 62px;
+    margin-bottom: 77px;
+    overflow: auto;
+    height: calc(100vh - 139px);
+    width: 100%;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.message {
+    color: #303030;
+}
+
+.message p {
+    background: #ffffff;
+    max-width: 70%;
+    padding: 12px 12px 12px 12px;
+    margin: 7px 15px 20px 15px;
+    border-radius: 8px;
+    float: left;
+    clear: both;
+}
+
+.message span {
+    float: left;
+    clear: both;
+    color: #9F9F9F;
+    font-size: 13px;
+    margin-left: 17px;
+    line-height: 12px;
+}
+
+.userMessage span {
+    float: right;
+    clear: both;
+    color: #9F9F9F;
+    font-size: 13px;
+    margin-right: 17px;
+    line-height: 12px;
+}
+
+.message:first-child {
+    padding-top: 20px;
+}
+
+.userMessage p {
+    background: #5ea9ed;
+    color: white;
+    float: right;
+    clear: both;
+}
+
+
+
+
+
+
+
+/* Desktop */
+@media screen and (min-width: 1000px) {
+    #sidebar {
+        position: absolute;
+        height: 100vh;
+        width: 256px;
+        left: 0;
+        background: #434753;
+        transition-duration: 0.3s;
+    }
+
+    #mainContent {
+        position: absolute;
+        height: 100vh;
+        width: calc(100% - 256px);
+        left: 256px;
+        background: #f0f0f0;
+        transition-duration: 0.3s;
+    }
+
+    #header > #headerGroupName > h5 {
+        left: 20px;
+        color: #5f5f5f;
+        font-weight: lighter;
+    }
+
+    #header > #headerGroupName > i {
+        display: none !important;
+    }
+
+    .message p {
+        max-width: 50% !important;
+    }
+}
