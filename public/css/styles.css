@@ -3,7 +3,7 @@ body{
     font-family: 'Archivo', sans-serif;
 }
 
-.main-layout {
+.start-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +12,7 @@ body{
 }
 .reg-main {
     display: flex;
-    background-color: rgba(12, 15, 42, 0.87);
+    background-color: #434753;
     justify-content: center;
     min-width: 800px;
     min-height: 400px;
@@ -40,7 +40,6 @@ body{
 }
 
 .reg-main h2{
-    font-family: 'Oswald', sans-serif;
     font-size: 25px;
     color: white;
 }
@@ -62,6 +61,7 @@ body{
     font-size: 14px;
     color: white;
     border: none;
+    cursor: pointer;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#28D2DE), to(#1A878F));
 }
 
@@ -69,9 +69,13 @@ body{
     border-radius: 5px;
     width: 160px;
     height: 30px;
-    font-family: 'Archivo', sans-serif;
     font-size: 14px;
     color: white;
     border: none;
+    cursor: pointer;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#28D2DE), to(#1A878F));
+}
+
+#loginError, #regerror {
+    color: red;
 }
