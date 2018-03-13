@@ -76,7 +76,28 @@ function handleSignUp() {
                     name: name,
                 });
             }
-        });
+            userReference.once("value")
+                .then(function(snapshot) {
+                userName = snapshot.child("name").val();
+                $("#startHeader").hide();
+                $("#signinpls").text("Welcome to WeChat!")
+                $(".start-screen").animate({
+                    opacity: 0,
+                }, 1000, "linear", function() {
+                    $(".start-screen").hide();
+                });
+                //load username into header
+                document.getElementById("headerUserName").innerHTML = userName;
+            });
+         });
+            $('#chatApp').show();
+        } else {
+            $('#chatApp').hide();
+            $(".start-screen").show().css("opacity", "1");
+            $(".reg-main").show();
+            $("#signinpls").show().text("Welcome! Please sign in or create an account.");
+            $("#sign-out").hide();
+
         }
     });
 }

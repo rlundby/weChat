@@ -69,7 +69,7 @@
                 <i class="far fa-user" style="font-size: 18px"></i>
             </div>
             <div id="headerUserSettings" class="headerUserSettingsHide">
-                <div id="headerUserLogout"><i title='logout' class="fas fa-sign-out-alt"></i></div>
+                <div id="headerUserLogout" onclick="firebase.auth().signOut()"><i title='logout' class="fas fa-sign-out-alt"></i></div>
                 <div id="headerUserBack"><i class="ion ion-close-round"></i></div>
             </div>
         </div>
