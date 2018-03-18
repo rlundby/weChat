@@ -32,3 +32,16 @@ usersOnline.on('value', function(snapshot) {
         });
     });
 });
+
+
+
+function signOutOnlineUser() {
+    let userRef = new Firebase('https://we-chat-43a4a.firebaseio.com/presence/' + currentUser); //where to look
+    userRef.onDisconnect().remove();
+}
+
+
+function signInOnlineUser(userIDCurrent) {
+    let userRef = new Firebase('https://we-chat-43a4a.firebaseio.com/presence/' + userIDCurrent); //where to look
+    userRef.set(true);
+}
