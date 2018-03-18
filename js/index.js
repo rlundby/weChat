@@ -61,6 +61,7 @@ function toggleSignIn() {
                 // ...
             });
             //load username into header
+            signInOnlineUser(userID);
             $('#chatApp').show();
         }
         else {
@@ -72,7 +73,6 @@ function toggleSignIn() {
 
         }
         console.log(userName);
-        loadOnlineUsers();
     });
 }
 
@@ -135,6 +135,7 @@ function handleSignUp() {
                 document.getElementById("headerUserName").innerHTML = userName;
             });
          });
+            signInOnlineUser(userID);
             $('#chatApp').show();
         } else {
             $('#chatApp').hide();
@@ -144,7 +145,7 @@ function handleSignUp() {
             $("#sign-out").hide();
 
         }
-        loadOnlineUsers();
+
     });
 }
 
@@ -166,6 +167,7 @@ window.onload = function(){
                 userName = (snapshot.val().name);
                 document.getElementById("headerUserName").innerHTML = userName;
             });
+            signInOnlineUser(userID);
             $('#chatApp').show();
         } else {
             userID = "";
@@ -176,7 +178,6 @@ window.onload = function(){
             $("#sign-out").hide();
 
         }
-        loadOnlineUsers();
     });
 }
 

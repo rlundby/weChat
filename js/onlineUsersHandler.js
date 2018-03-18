@@ -36,6 +36,7 @@ usersOnline.on('value', function(snapshot) {
 
 
 function signOutOnlineUser() {
+    firebase.auth().signOut()
     let userRef = new Firebase('https://we-chat-43a4a.firebaseio.com/presence/' + currentUser); //where to look
     userRef.onDisconnect().remove();
 }
