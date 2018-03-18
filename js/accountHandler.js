@@ -96,13 +96,6 @@ firebase.auth().onAuthStateChanged(user => {
         // Sets the user uid
         userID = user.uid;
         // If user state changes and 'user' exists, check Firebase Database for user
-        const userReference = db.ref(`/users/${user.uid}`);
-
-        userReference.once("value")
-            .then(function (snapshot) {
-                userName = snapshot.child("name").val();
-            });
-
         $("#startHeader").hide();
         $("#signinpls").text("Welcome to WeChat!")
         $(".start-screen").animate({
@@ -112,6 +105,7 @@ firebase.auth().onAuthStateChanged(user => {
         });
         //load username into header
         // Sign in
+        getUsername(userID);
         signInOnlineUser(userID);
         $('#chatApp').show();
     }
@@ -123,15 +117,15 @@ firebase.auth().onAuthStateChanged(user => {
         $("#startHeader").show();
         $("#signinpls").show().text("Welcome! Please sign in or create an account.");
     }
-    getUserName(userID);
 });
 
 // Gets the user name on login
-function getUserName(userID) {
+function getUsername(userID) {
     let userReference = db.ref('/users/' + userID);
     userReference.on("value", function (snapshot) {
         let userInfo = snapshot.val();
         document.getElementById("headerUserName").innerHTML = userInfo.username;
+        userName = userInfo.name;
     })
 }
 
