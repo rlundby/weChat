@@ -96,16 +96,16 @@
     transition-duration: 0.3s;
 }
 
-#header > #headerGroupName > i {
+#header > #headerGroupName > span {
     position: absolute;
     float: left;
-    padding: 15px 0 15px 20px;
-    font-size: 30px;
+    padding: 17px 0 15px 20px;
+    font-size: 25px;
     color: #828282;
     transition-duration: 0.3s;
 }
 
-#header > #headerGroupName > i:hover {
+#header > #headerGroupName > span:hover {
     color: black;
     cursor: pointer;
 }
