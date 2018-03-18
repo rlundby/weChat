@@ -1,8 +1,16 @@
 /* Online users function */
+let currentUser;
+
+
 let amOnline = new Firebase('https://we-chat-43a4a.firebaseio.com/.info/connected');  //check if connected
 
 amOnline.on('value', function(snapshot) {
-    let userRef = new Firebase('https://we-chat-43a4a.firebaseio.com/presence/' + userID); //where to look
+
+    if (!currentUser) {
+        currentUser = userID
+    }
+
+    let userRef = new Firebase('https://we-chat-43a4a.firebaseio.com/presence/' + currentUser); //where to look
     if (snapshot.val()) {
         userRef.onDisconnect().remove();
         userRef.set(true);
