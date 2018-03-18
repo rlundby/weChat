@@ -24,13 +24,12 @@ function loadChat() {
     });
 
 
-
     /* Load groupname onto Header */
-    var groupsRef = db.ref('/groups/' + chosenGroup); /* Where to look for data */
+    var groupsRef = db.ref('/groups/' + chosenGroup + '/settings'); /* Where to look for data */
     groupsRef.off(); //Clear database reference, so items wont load several times after changing group. Apperantly you can have unlimited references open at the same time
     groupsRef.on('child_added', function(snapshot) {
         groupChildData = snapshot.val();
-        ui.headerGroupName.innerHTML = "<i id='headerGroupMenu' class='ion ion-navicon'></i><i id='headerGroupClose' class='ion ion-android-close'></i><h5 id='headerGroupNameID'>" + groupChildData.name + "</h5>";
+        ui.headerGroupName.innerHTML = "<i id='headerGroupMenu' class='ion ion-navicon'></i><i id='headerGroupClose' class='ion ion-android-close'></i><h5 id='headerGroupNameID'>" + groupChildData + "</h5>";
 
         $('#headerGroupMenu, #headerGroupClose').click(function () {
             $('#sidebar').toggleClass('menuMobileShow');
