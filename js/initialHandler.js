@@ -13,6 +13,7 @@ const ui = {
     header: document.getElementById("header"),
     headerGroupName: document.getElementById("headerGroupName"),
     headerUser: document.getElementById("headerUser"),
-    messagebox: document.getElementById("messageBox")
+    messagebox: document.getElementById("messageBox"),
+    onlineUsersUL: document.getElementById("onlinePeopleUL")
 };
 
