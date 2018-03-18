@@ -446,7 +446,7 @@
         font-weight: lighter;
     }
 
-    #header > #headerGroupName > i {
+    #header > #headerGroupName > span {
         display: none !important;
     }
 
