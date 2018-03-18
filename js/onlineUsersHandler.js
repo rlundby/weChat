@@ -1,4 +1,43 @@
 /* Online users function */
+let currentUserID;
+
+function signInOnlineUser() {
+    let userRef = new Firebase('https://we-chat-43a4a.firebaseio.com/presence/' + userID); //where to look
+    userRef.set(true);
+    currentUserID = userID;
+    userRef.onDisconnect().remove();
+}
+
+function signOutOnlineUser() {
+    let userRef = new Firebase('https://we-chat-43a4a.firebaseio.com/presence/' + userID); //where to look
+    userRef.remove();
+    firebase.auth().signOut()
+}
+
+
+
+
+
+
+
+let usersOnline = db.ref('/presence'); /* Where to look for data PRESENCE */
+usersOnline.on('value', function(snapshot) {
+    ui.onlineUsersUL.innerHTML = ""; //Clear
+
+    snapshot.forEach(function(data) {
+        let checkUser = db.ref('/users/' + data.key); /* Where to look for data USER */
+        checkUser.on("value", function(snapshot) {
+            let userData = snapshot.val();
+            ui.onlineUsersUL.innerHTML += "<li class='userNameOnlinePeople'>" + userData.name + "</li>";
+            $('#onlinePeople > h4').html("ONLINE PEOPLE - " + $('#onlinePeopleUL').find('li').length ); //Count people online
+        });
+    });
+});
+
+
+
+
+/*
 let currentUser;
 
 
@@ -19,12 +58,12 @@ amOnline.on('value', function(snapshot) {
 
 
 
-let usersOnline = db.ref('/presence'); /* Where to look for data */
+let usersOnline = db.ref('/presence'); /!* Where to look for data *!/
 usersOnline.on('value', function(snapshot) {
     ui.onlineUsersUL.innerHTML = ""; //Clear
 
     snapshot.forEach(function(data) {
-        let checkUser = db.ref('/users/' + data.key); /* Where to look for data */
+        let checkUser = db.ref('/users/' + data.key); /!* Where to look for data *!/
         checkUser.on("value", function(snapshot) {
             let userData = snapshot.val();
             ui.onlineUsersUL.innerHTML += "<li class='userNameOnlinePeople'>" + userData.name + "</li>";
@@ -45,4 +84,4 @@ function signOutOnlineUser() {
 function signInOnlineUser(userIDCurrent) {
     let userRef = new Firebase('https://we-chat-43a4a.firebaseio.com/presence/' + userIDCurrent); //where to look
     userRef.set(true);
-}
+}*/

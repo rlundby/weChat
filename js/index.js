@@ -176,7 +176,6 @@ window.onload = function(){
             $(".reg-main").show();
             $("#signinpls").show().text("Welcome! Please sign in or create an account.");
             $("#sign-out").hide();
-
         }
     });
 }
