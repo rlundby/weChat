@@ -108,6 +108,7 @@ firebase.auth().onAuthStateChanged(user => {
         getUsername(userID);
         signInOnlineUser(userID);
         $('#chatApp').show();
+        setTimeout(function(){ ui.messagebox.scrollTop = ui.messagebox.scrollHeight; }, 0);
     }
     // If there is no logged in user - hide the chat
     else {
