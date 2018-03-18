@@ -72,6 +72,7 @@ function toggleSignIn() {
 
         }
         console.log(userName);
+        loadOnlineUsers();
     });
 }
 
@@ -143,6 +144,7 @@ function handleSignUp() {
             $("#sign-out").hide();
 
         }
+        loadOnlineUsers();
     });
 }
 
@@ -174,6 +176,7 @@ window.onload = function(){
             $("#sign-out").hide();
 
         }
+        loadOnlineUsers();
     });
 }
 

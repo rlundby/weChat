@@ -14,4 +14,3 @@ window.onresize = function() {
 // load:
 loadGroups(); /* Initiate load of groups */
 loadChat(); /* Initiate load of chat */
-loadOnlineUsers();
