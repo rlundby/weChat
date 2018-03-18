@@ -12,23 +12,24 @@ function loadChat() {
         childData = snapshot.val();
 
         /* Checks if you are the user so we can style it specificly later on */
-        if (childData.uid === userID){
-            ui.messages.innerHTML += "<div class='message userMessage'><span>" + childData.userName + " - " + childData.fullTimeStamp + "</span><p>" + childData.text + "</p></div>";
-        } else{
-            ui.messages.innerHTML += "<div class='message'><span>" + childData.userName + " - " + childData.fullTimeStamp + "</span><p>" + childData.text + "</p></div>";
+        if (childData.forGroup === chosenGroup) {
+            if (childData.uid === userID){
+                ui.messages.innerHTML += "<div class='message userMessage'><span>" + childData.userName + " - " + childData.fullTimeStamp + "</span><p>" + childData.text + "</p></div>";
+            } else{
+                ui.messages.innerHTML += "<div class='message'><span>" + childData.userName + " - " + childData.fullTimeStamp + "</span><p>" + childData.text + "</p></div>";
+            }
         }
 
         ui.messagebox.scrollTop = ui.messagebox.scrollHeight; //Scroll to bottom
     });
 
 
-
     /* Load groupname onto Header */
-    var groupsRef = db.ref('/groups/' + chosenGroup); /* Where to look for data */
+    var groupsRef = db.ref('/groups/' + chosenGroup + '/settings'); /* Where to look for data */
     groupsRef.off(); //Clear database reference, so items wont load several times after changing group. Apperantly you can have unlimited references open at the same time
     groupsRef.on('child_added', function(snapshot) {
         groupChildData = snapshot.val();
-        ui.headerGroupName.innerHTML = "<i id='headerGroupMenu' class='ion ion-navicon'></i><i id='headerGroupClose' class='ion ion-android-close'></i><h5 id='headerGroupNameID'>" + groupChildData.name + "</h5>";
+        ui.headerGroupName.innerHTML = "<i id='headerGroupMenu' class='ion ion-navicon'></i><i id='headerGroupClose' class='ion ion-android-close'></i><h5 id='headerGroupNameID'>" + groupChildData + "</h5>";
 
         $('#headerGroupMenu, #headerGroupClose').click(function () {
             $('#sidebar').toggleClass('menuMobileShow');
