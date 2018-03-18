@@ -1,12 +1,12 @@
 /* Push message */
 function pushMessage() {
 
-    var textInput = document.querySelector('#sendMessageInput');
+    let textInput = document.querySelector('#sendMessageInput');
 
-    var msgText = textInput.value;
+    let msgText = textInput.value;
 
-    var d = new Date();
-    var newDate = {
+    let d = new Date();
+    let newDate = {
         hour: (d.getHours()<10?'0':'') + d.getHours(),
         minute: (d.getMinutes()<10?'0':'') + d.getMinutes(),
         day: (d.getDate()<10?'0':'') + d.getDate(),
@@ -25,7 +25,8 @@ function pushMessage() {
             userName: userName,
             text: msgText,
             timeStamp: newDate.hour + ":" + newDate.minute,
-            fullTimeStamp: newDate.year + "-" + newDate.month + "-" + newDate.day + " " + newDate.hour + ":" + newDate.minute
+            fullTimeStamp: newDate.year + "-" + newDate.month + "-" + newDate.day + " " + newDate.hour + ":" + newDate.minute,
+            forGroup: chosenGroup
         });
     }
 }

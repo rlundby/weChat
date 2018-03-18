@@ -28,7 +28,6 @@
     <div class="start-screen">
         <h1 id="startHeader">WeChat</h1>
         <h1 id="signinpls">Welcome! Please sign in or create an account.</h1>
-       <!-- <button id="sign-out" name="signout">Sign Out</button> -->
         <div class="reg-main">
             <div class="regform">
                 <h2>Create an account</h2>
@@ -36,17 +35,18 @@
                     <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
                     <input  type="text" id="email" name="email" placeholder="Email" autocomplete="off" required>
                     <input type="password" id="password" name="password" placeholder="Password" required>
-                    <button id="sign-up" name="signup">Create your account</button>
+                    <p class="help-text">Password must contain 6 symbols or more</p>
+                    <button id="sign-up" name="signup" type="submit">Create your account</button>
+                <span id="regerror"></span>
             </div>
             <div class="login">
                 <h2>Log in</h2>
                 <input  type="text" id="sign-in-email" name="email" placeholder="Email"/>
                 <input type="password" id="sign-in-password" name="password" placeholder="Password"/>
                 <button id="sign-in" name="signin">Sign In</button>
+                <span id="loginError"></span>
             </div>
         </div>
-        <span id="loginError"></span>
-        <span id="regerror"></span>
     </div>
 
 
@@ -55,7 +55,7 @@
     <div id="sidebar">
         <div id="logoSidebar"><h3>WE - CHAT</h3><img src="../svgicons/speak.svg"></div>
         <div id="groups"><h4>GROUP CHATS - 9</h4><ul id="groupsUL"></ul></div>
-        <div id="onlinePeople"><h4>ONLINE PEOPLE - 7</h4><ul><li>Simon Dyhr</li><li>Bengt Åkesson</li><li>Felicia Jönsson</li><li>Ove Ovesson</li><li>Kalle Beng</li><li>Mange Magnusson</li><li>Albert Troi</li></ul></div>
+        <div id="onlinePeople"><h4>ONLINE PEOPLE - 0</h4><ul id="onlinePeopleUL"></ul></div>
     </div>
 
     <div id="mainContent">
@@ -69,7 +69,7 @@
                 <i class="far fa-user" style="font-size: 18px"></i>
             </div>
             <div id="headerUserSettings" class="headerUserSettingsHide">
-                <div id="headerUserLogout" onclick="firebase.auth().signOut()"><i title='logout' class="fas fa-sign-out-alt"></i></div>
+                <div id="headerUserLogout" onclick="signOutOnlineUser()"><i title='logout' class="fas fa-sign-out-alt"></i></div>
                 <div id="headerUserBack"><i class="ion ion-close-round"></i></div>
             </div>
         </div>
@@ -86,11 +86,12 @@
 </div>
 
 <script src="../js/firebaseHandler.js"></script>
-<script src="../js/index.js"></script>
+<script src="../js/accountHandler.js"></script>
 <script src="../js/initialHandler.js"></script>
 <script src="../js/groupHandler.js"></script>
 <script src="../js/messageHandler.js"></script>
 <script src="../js/chatHandler.js"></script>
+<script src="../js/onlineUsersHandler.js"></script>
 <script src="../js/finalHandler.js"></script>
 </body>
 </html>
