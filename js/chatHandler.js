@@ -40,4 +40,6 @@ function loadChat() {
             $('#headerGroupClose, #sendMessageForm, #headerGroupNameID').toggleClass('ipadShow');
         });
     });
+
+    ui.messagebox.scrollTop = ui.messagebox.scrollHeight; //Scroll to bottom
 }
