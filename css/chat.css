@@ -235,6 +235,10 @@
     overflow: auto;
 }
 
+#groups > ul::-webkit-scrollbar {
+    display: none;
+}
+
 #groups > ul > li {
     transition-duration: 0.3s;
     padding: 9px 0 9px 15px;
@@ -289,6 +293,10 @@
     width: 100%;
     height: 140px;
     overflow: auto;
+}
+
+#onlinePeople > ul::-webkit-scrollbar {
+    display: none;
 }
 
 #onlinePeople > ul > li {
